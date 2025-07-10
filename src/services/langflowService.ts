@@ -35,12 +35,12 @@ export class LangflowService {
 
       return response.data;
     } catch (error) {
-      console.error('Error running discharge flow:', error);
+      console.error('Error running coding flow:', error);
       throw error;
     }
   }
 
-  // Robust output extraction for discharge flow
+  // Robust output extraction for your agent flow
   private extractAgentOutputs(langflowResponse: any): any[] {
     console.log('Full Langflow Response:', JSON.stringify(langflowResponse, null, 2));
     
@@ -68,10 +68,8 @@ export class LangflowService {
     ];
 
     const parsedOutputs: any[] = [];
-    outputs.forEach((output: any, index: number) => {
+    outputs.forEach((output: any) => {
       const text = output.results?.message?.text || output.outputs?.message?.message || '';
-      console.log(`Raw text ${index}:`, text);
-      
       try {
         const lines = text.split('\n');
         let cleanLines = [...lines];
@@ -93,7 +91,7 @@ export class LangflowService {
     });
 
     const matchedOutputs: any[] = new Array(steps.length).fill(null);
-    parsedOutputs.forEach((output, index) => {
+    parsedOutputs.forEach((output) => {
       const keys = Object.keys(output);
       if (keys.includes('cleaned_note')) {
         matchedOutputs[0] = output; // NoteCleanerAgent
@@ -130,6 +128,7 @@ export class LangflowService {
       'PrimaryCoderAgent',
       'ValidatorAgent',
       'ExplainerAgent'
+      'AuditFormatterAgent'
     ];
 
     try {
@@ -153,7 +152,7 @@ export class LangflowService {
   }
 
   resetSession(): void {
-    this.sessionId = `coding_${Date.now()}`;
+    this.sessionId = `discharge_${Date.now()}`;
   }
 }
 
