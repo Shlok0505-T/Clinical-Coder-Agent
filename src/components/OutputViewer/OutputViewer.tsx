@@ -15,6 +15,7 @@ const formatAgentName = (name: string): string => {
     case 'PrimaryCoderAgent': return 'Primary Coder';
     case 'ValidatorAgent': return 'Validator';
     case 'ExplainerAgent': return 'Explainer';
+    case 'AuditFormatterAgent': return 'Audit Formatter';
     default: return name;
   }
 };
@@ -36,6 +37,8 @@ const formatAgentOutput = (stepName: string, output: any): string => {
       return output.validation_results ? JSON.stringify(output.validation_results, null, 2) : 'No validation results';
     case 'ExplainerAgent':
       return output.explanations ? output.explanations.map((e: any) => `• ${e.code}: ${e.layperson} (Audit: ${e.audit})`).join('\n') : 'No explanations';
+    case 'AuditFormatterAgent':
+      return output.audit_output ? JSON.stringify(output.audit_output, null, 2) : JSON.stringify(output, null, 2);
     default:
       return JSON.stringify(output, null, 2);
   }
