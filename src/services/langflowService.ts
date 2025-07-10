@@ -133,7 +133,7 @@ export class LangflowService {
 
     try {
       onStepUpdate(0, 'running');
-      const finalResult = await this.runDischargeFlow(input);
+      const finalResult = await this.runCodingFlow(input);
       const agentOutputs = this.extractAgentOutputs(finalResult);
       for (let i = 0; i < steps.length; i++) {
         onStepUpdate(i, 'running');
