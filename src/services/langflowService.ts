@@ -56,7 +56,8 @@ export class LangflowService {
       'EmbeddingRetrieverAgent',
       'PrimaryCoderAgent',
       'ValidatorAgent',
-      'ExplainerAgent'
+      'ExplainerAgent',
+      'AuditFormatterAgent'
     ];
 
     const parsedOutputs: any[] = [];
@@ -85,15 +86,17 @@ export class LangflowService {
       if (keys.includes('cleaned_note')) {
         matchedOutputs[0] = output; // NoteCleanerAgent
       } else if (keys.includes('chunks')) {
-        matchedOutputs[1] = output; // ChunkingAgent
+        matchedOutputs[1] = output; // ChunkerAgent
       } else if (keys.includes('retrieved_codes')) {
         matchedOutputs[2] = output; // EmbeddingRetrieverAgent
-      } else if (keys.includes('code_pairs')) {
+      } else if (keys.includes('suggested_codes')) {
         matchedOutputs[3] = output; // PrimaryCoderAgent
-      } else if (keys.includes('final_codes')) {
+      } else if (keys.includes('validation_results')) {
         matchedOutputs[4] = output; // ValidatorAgent
       } else if (keys.includes('explanations')) {
         matchedOutputs[5] = output; // ExplainerAgent
+      } else if (keys.includes('audit_output')) {
+        matchedOutputs[6] = output; // AuditFormatterAgent
       }
     });
 
