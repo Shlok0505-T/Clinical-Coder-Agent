@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { CodingInput } from '../types/discharge.types';
 
 const BASE_URL = '';
-const FLOW_ID = '66536226-403a-47fd-b1cb-2c7b6cba2ebb';
+const FLOW_ID = '99ecb228-9493-459d-ac2e-1aa0abe0ae48';
 
 export class LangflowService {
   private sessionId: string;
@@ -60,7 +60,7 @@ export class LangflowService {
     ];
 
     const parsedOutputs: any[] = [];
-    outputs.forEach((output: any, index: number) => {
+    outputs.forEach((output: any) => {
       const text = output.results?.message?.text || output.outputs?.message?.message || '';
       try {
         const lines = text.split('\n');
@@ -80,7 +80,7 @@ export class LangflowService {
     });
 
     const matchedOutputs: any[] = new Array(steps.length).fill(null);
-    parsedOutputs.forEach((output, index) => {
+    parsedOutputs.forEach((output) => {
       const keys = Object.keys(output);
       if (keys.includes('cleaned_note')) {
         matchedOutputs[0] = output; // NoteCleanerAgent
