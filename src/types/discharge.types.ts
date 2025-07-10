@@ -28,7 +28,8 @@ export const AGENT_STEPS: AgentStep[] = [
   { id: 'retriever', name: 'EmbeddingRetrieverAgent', status: 'pending' },
   { id: 'coder', name: 'PrimaryCoderAgent', status: 'pending' },
   { id: 'validator', name: 'ValidatorAgent', status: 'pending' },
-  { id: 'explainer', name: 'ExplainerAgent', status: 'pending' }
+  { id: 'explainer', name: 'ExplainerAgent', status: 'pending' },
+  { id: 'audit', name: 'AuditFormatterAgent', status: 'pending' }
 ];
 
 export const DEFAULT_INPUT: CodingInput = {
