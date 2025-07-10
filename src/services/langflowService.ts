@@ -85,12 +85,12 @@ export class LangflowService {
       if (keys.includes('cleaned_note')) {
         matchedOutputs[0] = output; // NoteCleanerAgent
       } else if (keys.includes('chunks')) {
-        matchedOutputs[1] = output; // ChunkerAgent
+        matchedOutputs[1] = output; // ChunkingAgent
       } else if (keys.includes('retrieved_codes')) {
         matchedOutputs[2] = output; // EmbeddingRetrieverAgent
-      } else if (keys.includes('suggested_codes')) {
+      } else if (keys.includes('code_pairs')) {
         matchedOutputs[3] = output; // PrimaryCoderAgent
-      } else if (keys.includes('validation_results')) {
+      } else if (keys.includes('final_codes')) {
         matchedOutputs[4] = output; // ValidatorAgent
       } else if (keys.includes('explanations')) {
         matchedOutputs[5] = output; // ExplainerAgent
