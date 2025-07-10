@@ -20,8 +20,6 @@ export const QuizConversation: React.FC<QuizConversationProps> = ({ interactionL
 
   return (
     <div className="output-section">
-      <h2 className="text-lg font-semibold mb-4">Patient Interaction History</h2>
-      
       <div className="chat-container">
         <div>
           {interactionLog.map((interaction, index) => (
@@ -33,24 +31,6 @@ export const QuizConversation: React.FC<QuizConversationProps> = ({ interactionL
                   <div>{interaction.message_content}</div>
                 </div>
               </div>
-
-              {/* Patient Response - Right Side */}
-              {interaction.patient_response && (
-                <div className="chat-message chat-message-right">
-                  <div className={`chat-bubble chat-bubble-right ${
-                    interaction.correct === true ? 'chat-bubble-correct' : 
-                    interaction.correct === false ? 'chat-bubble-incorrect' : ''
-                  }`}>
-                    <div className="text-xs opacity-75 mb-2 flex justify-between items-center">
-                      <span>Patient</span>
-                      {interaction.correct === true && <span>✓</span>}
-                      {interaction.correct === false && <span>✗</span>}
-                    </div>
-                    <div>{interaction.patient_response}</div>
-                  </div>
-                </div>
-              )}
-
               {/* Clarification - Left Side */}
               {interaction.clarification && (
                 <div className="chat-message chat-message-left">
