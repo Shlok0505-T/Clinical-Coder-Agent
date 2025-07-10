@@ -1,8 +1,9 @@
 {
+  "version": 2,
   "rewrites": [
     {
-      "source": "/api/:match*",
-      "destination": "http://74.225.219.71/flow/99ecb228-9493-459d-ac2e-1aa0abe0ae48*"
+      "source": "/api/v1/run/(.*)",
+      "destination": "http://74.225.219.71/api/v1/run/$1"
     }
   ]
 }
