@@ -43,7 +43,7 @@ const MedSimplifyAI = () => {
       const startTime = Date.now();
       
       // Call your actual Langflow API for text simplification
-      const response = await fetch('/api/v1/run/medical-text-simplifier', {
+      const response = await fetch('/api/v1/run/http://74.225.219.71/flow/99ecb228-9493-459d-ac2e-1aa0abe0ae48', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
