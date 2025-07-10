@@ -60,7 +60,7 @@ export class LangflowService {
     ];
 
     const parsedOutputs: any[] = [];
-    outputs.forEach((output: any, index: number) => {
+    outputs.forEach((output: any) => {
       const text = output.results?.message?.text || output.outputs?.message?.message || '';
       try {
         const lines = text.split('\n');
@@ -80,7 +80,7 @@ export class LangflowService {
     });
 
     const matchedOutputs: any[] = new Array(steps.length).fill(null);
-    parsedOutputs.forEach((output, index) => {
+    parsedOutputs.forEach((output) => {
       const keys = Object.keys(output);
       if (keys.includes('cleaned_note')) {
         matchedOutputs[0] = output; // NoteCleanerAgent
