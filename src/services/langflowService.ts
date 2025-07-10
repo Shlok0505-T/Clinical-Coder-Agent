@@ -35,20 +35,27 @@ export class LangflowService {
 
       return response.data;
     } catch (error) {
-      console.error('Error running coding flow:', error);
+      console.error('Error running discharge flow:', error);
       throw error;
     }
   }
 
+  // Robust output extraction for discharge flow
   private extractAgentOutputs(langflowResponse: any): any[] {
+    console.log('Full Langflow Response:', JSON.stringify(langflowResponse, null, 2));
+    
+    // Try different possible structures
     let outputs = [];
     if (langflowResponse.outputs && langflowResponse.outputs[0] && langflowResponse.outputs[0].outputs) {
       outputs = langflowResponse.outputs[0].outputs;
     } else if (langflowResponse.outputs) {
       outputs = langflowResponse.outputs;
     } else {
+      console.log('No outputs found in response structure');
       return [];
     }
+
+    console.log('Found outputs:', outputs.length);
 
     const steps = [
       'NoteCleanerAgent',
@@ -61,8 +68,10 @@ export class LangflowService {
     ];
 
     const parsedOutputs: any[] = [];
-    outputs.forEach((output: any) => {
+    outputs.forEach((output: any, index: number) => {
       const text = output.results?.message?.text || output.outputs?.message?.message || '';
+      console.log(`Raw text ${index}:`, text);
+      
       try {
         const lines = text.split('\n');
         let cleanLines = [...lines];
@@ -73,15 +82,18 @@ export class LangflowService {
           cleanLines = cleanLines.slice(0, -1);
         }
         const cleanText = cleanLines.join('\n').trim();
+        console.log(`Clean text ${index}:`, cleanText);
         const parsedOutput = JSON.parse(cleanText);
+        console.log(`Parsed output ${index}:`, parsedOutput);
         parsedOutputs.push(parsedOutput);
       } catch (e) {
+        console.log(`Failed to parse output ${index}:`, e);
         parsedOutputs.push({ raw_text: text });
       }
     });
 
     const matchedOutputs: any[] = new Array(steps.length).fill(null);
-    parsedOutputs.forEach((output) => {
+    parsedOutputs.forEach((output, index) => {
       const keys = Object.keys(output);
       if (keys.includes('cleaned_note')) {
         matchedOutputs[0] = output; // NoteCleanerAgent
@@ -100,7 +112,9 @@ export class LangflowService {
       }
     });
 
-    return matchedOutputs.map((output, index) =>
+    console.log('Final matched outputs:', matchedOutputs);
+    
+    return matchedOutputs.map((output, index) => 
       output || { message: `No output found for ${steps[index]}` }
     );
   }
@@ -120,7 +134,7 @@ export class LangflowService {
 
     try {
       onStepUpdate(0, 'running');
-      const finalResult = await this.runCodingFlow(input);
+      const finalResult = await this.runDischargeFlow(input);
       const agentOutputs = this.extractAgentOutputs(finalResult);
       for (let i = 0; i < steps.length; i++) {
         onStepUpdate(i, 'running');
@@ -129,6 +143,7 @@ export class LangflowService {
       }
       return finalResult;
     } catch (error) {
+      console.error('Flow execution failed:', error);
       throw error;
     }
   }
