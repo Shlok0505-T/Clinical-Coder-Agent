@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://your-backend-domain.com/api/:match*"
+    }
+  ]
+}
