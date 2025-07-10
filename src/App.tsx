@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Download } from 'lucide-react';
-import { JsonInput } from './components/JsonInput/JsonInput';
-import { AgentProgress } from './components/AgentProgress/AgentProgress';
-import { OutputViewer } from './components/OutputViewer/OutputViewer';
-import { PdfGenerator } from './components/PdfGenerator/PdfGenerator';
+import { JsonInput } from './components/JsonInput';
+import { AgentProgress } from './components/AgentProgress';
+import { OutputViewer } from './components/OutputViewer';
+import { PdfGenerator } from './components/PdfGenerator';
 import { langflowService } from './services/langflowService';
 import type { CodingInput, AgentStep, FlowState } from './types/discharge.types';
 import { AGENT_STEPS } from './types/discharge.types';

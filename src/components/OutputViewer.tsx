@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
-import type { AgentStep } from '../../types/discharge.types';
+import type { AgentStep } from '../types/discharge.types';
 
 interface OutputViewerProps {
   steps: AgentStep[];

@@ -3,7 +3,7 @@ export interface CodingInput {
   role: string;
   content: {
     note_text: string;
-    metadata?: Record<string, any>;
+    metadata?: Record<string, string | number | boolean | null>;
   };
 }
 
@@ -11,7 +11,7 @@ export interface AgentStep {
   id: string;
   name: string;
   status: 'pending' | 'running' | 'completed' | 'error';
-  output?: any;
+  output?: unknown;
   error?: string;
 }
 
@@ -19,7 +19,7 @@ export interface FlowState {
   isRunning: boolean;
   currentStep: number;
   steps: AgentStep[];
-  finalOutput?: any;
+  finalOutput?: unknown;
 }
 
 export const AGENT_STEPS: AgentStep[] = [

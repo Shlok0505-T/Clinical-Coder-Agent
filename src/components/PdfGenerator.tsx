@@ -3,7 +3,16 @@ import jsPDF from 'jspdf';
 import { Download } from 'lucide-react';
 
 interface PdfGeneratorProps {
-  codingOutput: any;
+  codingOutput: unknown;
+}
+
+function hasExplanations(obj: unknown): obj is { explanations: Array<{ code: string; layperson: string; audit: string }> } {
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    'explanations' in obj &&
+    Array.isArray((obj as any).explanations)
+  );
 }
 
 export const PdfGenerator: React.FC<PdfGeneratorProps> = ({ codingOutput }) => {
@@ -13,12 +22,12 @@ export const PdfGenerator: React.FC<PdfGeneratorProps> = ({ codingOutput }) => {
     doc.text('Clinical Coding Report', 20, 20);
     doc.setFontSize(12);
     doc.text(`Generated: ${new Date().toLocaleString()}`, 20, 35);
-    if (codingOutput && codingOutput.explanations) {
+    if (hasExplanations(codingOutput)) {
       doc.setFontSize(14);
       doc.text('Code Explanations:', 20, 50);
       doc.setFontSize(10);
       let y = 60;
-      codingOutput.explanations.forEach((e: any) => {
+      codingOutput.explanations.forEach((e) => {
         doc.text(`• ${e.code}: ${e.layperson} (Audit: ${e.audit})`, 20, y);
         y += 8;
         if (y > 270) {

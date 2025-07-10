@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Play, FileText, User, Calendar, Hash, ChevronDown } from 'lucide-react';
-import type { CodingInput } from '../../types/discharge.types';
+import type { CodingInput } from '../types/discharge.types';
 
 interface JsonInputProps {
   onSubmit: (input: CodingInput) => void;
