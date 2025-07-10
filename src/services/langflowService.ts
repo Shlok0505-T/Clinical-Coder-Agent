@@ -127,7 +127,7 @@ export class LangflowService {
       'EmbeddingRetrieverAgent',
       'PrimaryCoderAgent',
       'ValidatorAgent',
-      'ExplainerAgent'
+      'ExplainerAgent',
       'AuditFormatterAgent'
     ];
 
