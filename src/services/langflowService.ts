@@ -68,7 +68,7 @@ export class LangflowService {
     ];
 
     const parsedOutputs: any[] = [];
-    outputs.forEach((output: any) => {
+    outputs.forEach((output: any, index: number) => {
       const text = output.results?.message?.text || output.outputs?.message?.message || '';
       try {
         const lines = text.split('\n');
