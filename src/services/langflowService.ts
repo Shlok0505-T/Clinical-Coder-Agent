@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { CodingInput } from '../types/discharge.types';
 
 const BASE_URL = '';
-const FLOW_ID = '99ecb228-9493-459d-ac2e-1aa0abe0ae48';
+const FLOW_ID = '21487bb3-1cab-43ac-92ca-b46f207a8266/folder/db0f66c1-543c-4777-9002-c17e56d0ce2f';
 
 export class LangflowService {
   private sessionId: string;
