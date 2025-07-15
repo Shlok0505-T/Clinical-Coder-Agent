@@ -10,7 +10,7 @@
       "destination": "http://74.225.219.71/api/v1/run/$1"
     },
     {
-      "source": "/agents/patient-discharge-agent/(.*)",
+      "source": "/agents/clinical-coder-agent/(.*)",
       "destination": "/agents/clinical-coder-agent/index.html"
     }
   ]
