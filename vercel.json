@@ -3,11 +3,11 @@
   "rewrites": [
     {
       "source": "/agents/clinical-coder-agent/api/v1/run/(.*)",
-      "destination": "http://74.225.219.71/api/v1/run/$1"
+      "destination": "http://http://98.70.50.243/api/v1/run/$1"
     },
     {
       "source": "/api/v1/run/(.*)",
-      "destination": "http://74.225.219.71/api/v1/run/$1"
+      "destination": "http://http://98.70.50.243/api/v1/run/$1"
     },
     {
       "source": "/agents/clinical-coder-agent/(.*)",
